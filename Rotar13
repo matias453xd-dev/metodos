@@ -1,0 +1,27 @@
+import string
+
+def rot13(message):
+    abecedario = string.ascii_lowercase
+    abecedario_mayusculas = string.ascii_uppercase
+    palabraFinal = []
+
+    for i in message:
+        # Si el carácter está en minúsculas
+        if i in abecedario:
+            palabraFinal.append(CambioDeLugar(i, abecedario))
+        # Si el carácter está en mayúsculas
+        elif i in abecedario_mayusculas:
+            palabraFinal.append(CambioDeLugar(i, abecedario_mayusculas))
+        # Si no es letra, agregarlo directamente
+        else:
+            palabraFinal.append(i)
+    return "".join(palabraFinal)
+
+def CambioDeLugar(x, abcd):
+    # Encontrar la posición de la letra y rotarla 13 posiciones
+    index = abcd.index(x)
+    new_index = (index + 13) % len(abcd) # new_index = Al resto de la division entre el indice mas 13
+                                         #  y la longitud del abecedario
+    return abcd[new_index]
+
+print(rot13("HolaMundo"))  
